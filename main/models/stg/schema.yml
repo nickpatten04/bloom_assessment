@@ -1,0 +1,157 @@
+
+version: 2
+
+models:
+  - name: stg_activity_events
+    description: "Staging model representing cleaned 1:1 of seed: activity.csv"
+    columns:
+      - name: event_id
+        description: "Unique identifier of an event."
+        tests:
+          - not_null
+          - unique
+      - name: organization_id
+        description: "Unique identifier of an organization."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_organizations')
+              field: organization_id
+      - name: user_id
+        description: "Unique identifier of a user."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_users')
+              field: user_id
+      - name: feature_category
+        description: "Business category of activity feature."
+        tests:
+          - accepted_values:
+              values: ['ROCKS', 'ISSUES', 'SCORECARDS', 'MEETINGS', 'TODOS', 'HEADLINES']
+      - name: event_type
+        description: "Type of activity feature."
+        tests:
+          - accepted_values:
+              values: ['HEADLINE_CREATED', 'TODO_CREATED', 'ISSUE_CREATED', 'MEETING_COMPLETED', 'SCORECARD_UPDATED', 'ROCK_COMPLETED', 'ROCK_UPDATED', 'ROCK_CREATED', 'MEETING_CREATED', 'SCORECARD_SCORE_ENTERED', 'TODO_COMPLETED', 'ISSUE_RESOLVED']
+      - name: event_date
+        description: "Date event took place."
+      - name: event_timestamp
+        description: "Timestamp event took place."
+  
+  - name: stg_organizations
+    description: "Staging model representing cleaned 1:1 of seed: organizations.csv"
+    columns:
+      - name: organization_id
+        description: "Unique identifier of an organization."
+        tests:
+          - not_null
+          - unique
+      - name: organization_name
+        description: "Name of the organization."
+      - name: business_os_type
+        description: "Type of OS organization is using."
+        tests:
+          - accepted_values:
+              values: ['CUSTOM', 'SCALING UP', 'EOS', 'PINNACLE']
+      - name: industry
+        description: "Industy organization belongs to."
+      - name: employee_count
+        description: "Number of empolyees organization has."
+      - name: status
+        description: "Status of organization."
+        tests:
+          - accepted_values:
+              values: ['CHURNED', 'ACTIVE', 'TRIAL']
+      - name: created_at
+        description: "Date organization was created in system."
+      - name: churned_at
+        description: "Date organization churned, if status = churned."
+  
+  - name: stg_plans
+    description: "Staging model representing cleaned 1:1 of seed: plans.csv"
+    columns:
+      - name: plan_id
+        description: "Unique identifier of a plan."
+        tests:
+          - not_null
+          - unique
+      - name: plan_name
+        description: "Name of the plan."
+        tests:
+          - accepted_values:
+              values: ['FREE', 'STARTER', 'PROFESSIONAL', 'ENTERPRISE']
+      - name: base_price
+        description: "Flat rate for plan."
+      - name: per_seat_price
+        description: "Price per organization seat, of plan."
+  
+  - name: stg_subscriptions
+    description: "Staging model representing cleaned 1:1 of seed: subscriptions.csv"
+    columns:
+      - name: subscription_id
+        description: "Unique identifier of a subscription."
+        tests:
+          - not_null
+          - unique
+      - name: organization_id
+        description: "Unique identifier of an organization."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_organizations')
+              field: 'organization_id'
+      - name: plan_id
+        description: "Unique identifier of a plan."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_plans')
+              field: plan_id
+      - name: seat
+        description: "Number of seats for a subscription."
+      - name: mrr_amount
+        description: "Monthly recurring revenue of a subscription."
+      - name: billing_interval
+        description: "Billing interval of a subscription."
+        tests:
+          - accepted_values:
+              values: ['ANNUAL', 'MONTHLY']
+      - name: started_at
+        description: "Timestamp subscription started at."
+      - name: ended_at
+        description: "Timestamp subscription ended at."
+      - name: change_reason
+        description: "Resaon subscription changed."
+        tests:
+          - accepted_values:
+              values: ['NEW', 'DOWNGRADE', 'REACTIVATION', 'CHURN', 'UPGRADE']
+
+  - name: stg_users
+    description: "Staging model representing a clean 1:1 of seed: users.csv"
+    columns:
+      - name: user_id
+        description: "Unique identifier of a user."
+        tests:
+          - not_null
+          - unique
+      - name: organization_id
+        description: "Unique identifier of an organization."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_organizations')
+              field: organization_id
+      - name: user_name
+        description: "Full name of user."
+      - name: role
+        description: "Role of user."
+        tests:
+          - accepted_values:
+              values: ['MANAGER', 'MEMBER', 'OWNER', 'ADMIN']
+      - name: is_registered
+        description: "Boolean indicating if a user is registered."
+      - name: created_at
+        description: "Timestamp user was created in system."
+      - name: last_active_at
+        description: "Timestamp user was last active."

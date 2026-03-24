@@ -1,0 +1,5 @@
+plan_id,plan_name,base_price,per_seat_price
+plan_free,Free,0,0
+plan_start,Starter,49,5
+plan_pro,Professional,149,10
+plan_ent,Enterprise,399,15

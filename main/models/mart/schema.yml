@@ -1,0 +1,104 @@
+version: 2
+
+models:
+  - name: monthly_organization_activity
+    description: "Mart model detailing monthly organization event activity."
+    columns:
+      - name: month
+        description: "Month events took place."
+      - name: organization_id
+        description: "Unique identifier of an organization."
+      - name: organization_name
+        description: "Name of the organization."
+      - name: organization_business_os_type
+        description: "Operating system the organization is using."
+      - name: organization_industry
+        description: "Industry the organzation belongs to."
+      - name: organization_employee_count
+        description: "Number of employees an organization has."
+      - name: organization_size_cohort
+        description: "Category of business, based on employee count."
+      - name: organization_status_current
+        description: "Current status of the organization."
+      - name: organization_plan_name_current
+        description: "Current plan the organization has."
+      - name: organization_status
+        description: "Status of the organization in that month."
+      - name: organization_is_churned
+        description: "Boolean indicating if an organization is churned."
+      - name: organization_churned_at
+        description: "Timestamp organization was churned, if churned."
+      - name: organization_is_churned_in_month
+        description: "Boolean indicating of an organization was churned in that month."
+      - name: subscription_change_reason
+        description: "Reason the subscription was changed in that month."
+      - name: total_mrr_amount
+        description: "Monthly recurring revenue amount in that month."
+      - name: mom_total_mrr_delta
+        description: "Delta in MRR between current and previous month."
+      - name: total_seats
+        description: "Total number of seats the organization has in that month."
+      - name: mom_total_seats_delta
+        description: "Delta in seats between current and previous month."
+      - name: num_events
+        description: "Total number of events the organization logged in that month."
+      - name: mom_num_events_delta
+        description: "Delta in number of events between current and previous month."
+      - name: num_rocks
+        description: "Total number of rocks the organization logged in that month."
+      - name: mom_num_rocks_delta
+        description: "Delta in number of rocks between current and previous month."
+      - name: num_issues
+        description: "Total number of issues the organization logged in that month."
+      - name: mom_num_issues_delta
+        description: "Delta in number of issues between current and previous month."
+      - name: num_meetings
+        description: "Total number of meetings the organization logged in that month."
+      - name: mom_num_meetings_delta
+        description: "Delta in number of meetings between current and previous month."
+      - name: num_scorecards
+        description: "Total number of scorecards the organization logged in that month."
+      - name: mom_num_scorecards_delta
+        description: "Delta in number of scorecards between current and previous month."
+      - name: num_todos
+        description: "Total number of todos the organization logged in that month."
+      - name: mom_num_todos_delta
+        description: "Delta in number of todos between current and previous month."
+      - name: num_headlines
+        description: "Total number of headlines the organization logged in that month."
+      - name: mom_num_headlines_delta
+        description: "Delta in the number of headlines between current and previous month."
+
+  - name: organization_segments
+    description: "Mart model detailing organization level financial and usage metrics, broken up by organizational segments."
+    columns:
+      - name: organization_business_os_type
+        description: "Operating systems offered."
+      - name: organization_industry
+        description: "Industries we service."
+      - name: organization_size_cohort
+        description: "Category of businesses, based on employee count."
+      - name: organization_status_current
+        description: "Current status of each organization."
+      - name: organization_plan_name_current
+        description: "Current plan each organization has."
+      - name: total_revenue
+        description: "Total revenue calculated by multiplying the MRR amount by the datediff in months for each subscription."
+      - name: num_users
+        description: "Number of users each organization has."
+      - name: num_registered_users
+        description: "Number of registered users each organization has."
+      - name: total_events
+        description: "Number of event each organization has logged."
+      - name: total_rocks
+        description: "Number of rocks each organization has logged."
+      - name: total_issues
+        description: "Number of issues each organization has logged."
+      - name: total_meetings
+        description: "Number of meetings each organization has logged."
+      - name: total_scorecards
+        description: "Number of scorecards each organization has logged."
+      - name: total_todos
+        description: "Number of todos each organization has logged."
+      - name: total_headlines
+        description: "Number of headlines heach organization has logged."

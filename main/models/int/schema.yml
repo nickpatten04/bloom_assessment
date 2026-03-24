@@ -1,0 +1,274 @@
+version: 2
+
+models:
+  - name: int_monthly_organization_activity
+    description: "Intermediate model detailing monthly event history at the organization level."
+    columns:
+      - name: month
+        description: "Month events took place."
+      - name: organization_id
+        description: "Unique identifier of an organization."
+      - name: organization_name
+        description: "Name of the organization."
+      - name: organization_business_os_type
+        description: "Operating system business is using."
+      - name: organization_industry
+        description: "Industry organization belongs to."
+      - name: organization_employee_count
+        description: "Number of employee the organization has."
+      - name: organization_size_cohort
+        description: "Category of business, based on employee count."
+      - name: organization_status_current
+        description: "Current status of the organization."
+      - name: organization_plan_name_current
+        description: "Current plan the organization has."
+      - name: subscription_change_reason
+        description: "Reason for change in subscription, in given month."
+      - name: organization_is_churned
+        description: "Boolean indicating if the organization is currently churned."
+      - name: organization_churned_at
+        description: "Date the organization was churned, if churned."
+      - name: organization_status
+        description: "Status of the organization in that month."
+      - name: organization_is_churned_in_month
+        description: "Boolean indicating if the organization was churned in that month."
+      - name: organization_plan_name
+        description: "Plan the organization has in that month."
+      - name: total_mrr_amount
+        description: "Monthly recurring revenue amount in that month."
+      - name: total_seats
+        description: "Total seats in that month."
+      - name: num_events
+        description: "Number of total events that month."
+      - name: num_rocks
+        description: "Number of rocks in that month."
+      - name: num_issues
+        description: "Number of issues in that month."
+      - name: num_meetings
+        description: "Number of meetings in that month."
+      - name: num_scorecards
+        description: "Number of scorecard in that month."
+      - name: num_todos
+        description: "Number of todos in that month."
+      - name: num_headlines
+        description: "Number of headlines in that month."
+  
+  - name: int_organization_segments
+    description: "Intermediate model detailing organization level financial and usage metrics, broken up by organizational segments."
+    columns:
+      - name: organization_business_os_type
+        description: "Operating systems offered."
+      - name: organization_industry
+        description: "Industries we service."
+      - name: organization_size_cohort
+        description: "Category of businesses, based on employee count."
+      - name: organization_status_current
+        description: "Current status of each organization."
+      - name: organization_plan_name_current
+        description: "Current plan each organization has."
+      - name: total_revenue
+        description: "Total revenue calculated by multiplying the MRR amount by the datediff in months for each subscription."
+      - name: total_users
+        description: "Total number of users each organization has."
+      - name: total_registered_users
+        description: "Total number of registered users each organization has."
+      - name: total_events
+        description: "Number of event each organization has logged."
+      - name: total_rocks
+        description: "Number of rocks each organization has logged."
+      - name: total_issues
+        description: "Number of issues each organization has logged."
+      - name: total_meetings
+        description: "Number of meetings each organization has logged."
+      - name: total_scorecards
+        description: "Number of scorecards each organization has logged."
+      - name: total_todos
+        description: "Number of todos each organization has logged."
+      - name: total_headlines
+        description: "Number of headlines heach organization has logged."
+  
+  - name: int_organization_subscription_plans
+    description: "Intermediate table detailing subscription informatino at the organization level."
+    columns:
+      - name: organization_subscription_plan_id
+        description: "Unique identifier of an organization, subscription, and plan."
+      - name: organization_id
+        description: "Unique identifier of an organization."
+      - name: organization_name
+        description: "Name of the organization."
+      - name: organization_business_os_type
+        description: "Operating system the organization is using."
+      - name: organization_industry
+        description: "Industy the organization belongs to."
+      - name: organization_employee_count
+        description: "Number of employees the organizaton has."
+      - name: organization_size_cohort
+        description: "Category of business, based on employee count."
+      - name: organization_status
+        description: "Status of the organization."
+      - name: organization_plan_name
+        description: "Plan the organization has."
+      - name: organization_is_churned
+        description: "Boolean indicating if an organization is churned."
+      - name: subscription_id
+        description: "Unique identifier of a subscription."
+      - name: subscription_seats
+        description: "Number of seats a subscription has."
+      - name: subscription_mrr_amount
+        description: "Monthly recurring revenue amount of a subscription."
+      - name: subscription_billing_interval
+        description: "Interval the subscription is billed."
+      - name: subscription_change_reason
+        description: "Reason for the change in subscription."
+      - name: plan_id
+        description: "Unique identifier of a plan."
+      - name: plan_name
+        description: "Name of a plan."
+      - name: plan_base_price
+        description: "Base price of a plan."
+      - name: plan_per_seat_price
+        description: "Price per seat of a plan."
+      - name: subscription_started_at
+        description: "Timestamp the subscription started at."
+      - name: subscription_ended_at
+        description: "Timestamp the subscription ended at."
+  
+  - name: int_organization_users
+    description: "Intermediate table detailing organization and user relationships"
+    columns:
+      - name: organization_id
+        description: "Unique identifier of an organization."
+      - name: organization_name
+        description: "Name of the organization"
+      - name: organization_business_os_type
+        description: "Operating system the business is using."
+      - name: organization_industry
+        description: "Industry the organization belongs to."
+      - name: organization_employee_count
+        description: "Number of employees the organization has."
+      - name: organization_size_cohort
+        description: "Category of business, based on employee count."
+      - name: organization_status
+        description: "Status of the organization."
+      - name: organization_plan_name
+        description: "Name of plan the organization has."
+      - name: organization_is_churned
+        description: "Boolean indicating of an organization is churned."
+      - name: user_id
+        description: "Unique identifier of a user."
+      - name: user_full_name
+        description: "Full name of the user."
+      - name: user_first_name
+        description: "First name of the user."
+      - name: user_last_name
+        description: "Last name of the user."
+      - name: user_role
+        description: "Role the user has."
+      - name: user_is_registered
+        description: "Boolean indicating if a user is registered."
+      - name: user_created_at
+        description: "Timestamp user was created."
+      - name: user_last_active_at
+        description: "Timestamp user was last active."
+      - name: organization_created_at
+        description: "Timestamp organization was created."
+      - name: organization_churned_at
+        description: "Timetamp organization churned, if churned."
+
+  - name: int_organizations
+    description: "Intermediate table with information on organizations."
+    columns:
+      - name: organization_id
+        description: "Unique identifier of an organization."
+      - name: organization_name
+        description: "Name of the organization."
+      - name: organization_business_os_type
+        description: "Operating system the business is using."
+      - name: organization_industry
+        description: "Industry the organization belongs to."
+      - name: organization_employee_count
+        description: "Number of employees the organization has."
+      - name: organization_size_cohort
+        description: "Category of business, based on employee count."
+      - name: organization_is_churned
+        description: "Boolean indicating if an organization was churned."
+      - name: organization_status
+        description: "Status of the organization."
+      - name: organization_plan_id
+        description: "Unique identifier of a plan."
+      - name: organization_plan_name
+        description: "Name of the plan the organization has."
+      - name: organization_created_at
+        description: "Timestamp of the organization was created."
+      - name: organization_churned_at
+        description: "Timestamp the organization was churned, if churned."
+
+  - name: int_user_organization_activity_events
+    description: "Intermediate table detailing events at the user level."
+    columns:
+      - name: event_id
+        description: "Unique identifier of an event."
+      - name: event_type
+        description: "Type of event"
+      - name: event_feature_category
+        description: "Category the event type belongs to."
+      - name: user_id
+        description: "Unique identifer of a user."
+      - name: user_full_name
+        description: "Full name of a user."
+      - name: user_first_name
+        description: "First name of a user."
+      - name: user_last_name
+        description: "Last name of a user."
+      - name: user_role
+        description: "Role a user has."
+      - name: user_is_registered
+        description: "Boolean indicating if a user is registered."
+      - name: organization_id
+        description: "Unique identifier of an organization."
+      - name: organization_name
+        description: "Name of the organization."
+      - name: organization_business_os_type
+        description: "Operating system the business is using."
+      - name: organization_industry
+        description: "Industry an organization belongs to."
+      - name: organization_employee_count
+        description: "Number of employees the organization has."
+      - name: organization_size_cohort
+        description: "Category of business, based on employee count."
+      - name: organization_status
+        description: "Status of the organization."
+      - name: organization_is_churned
+        description: "Boolean indicating of an organization is churned."
+      - name: user_created_at
+        description: "Timestamp user was created."
+      - name: user_last_active_at
+        description: "Timestamp user was last active."
+      - name: organization_created_at
+        description: "Timestamp organization was created."
+      - name: organization_churned_at
+        description: "Timestamp organization was churned, if churned."
+      - name: event_timestamp
+        description: "Timestamp the event took place."
+  
+  - name: int_users
+    description: "Intermediate table with information on users"
+    columns:
+      - name: user_id
+        description: "Unique identifier of a user."
+      - name: organization_id
+        description: "Unique identifier of an organization."
+      - name: user_full_name
+        description: "Full name of the user."
+      - name: user_first_name
+        description: "First name of the user."
+      - name: user_last_name
+        description: "Last name of the user."
+      - name: user_role
+        description: "Role the user has."
+      - name: user_is_registered
+        description: "Boolean indicating if a user is registered."
+      - name: user_created_at
+        description: "Timestamp user was created."
+      - name: user_last_active_at
+        description: "Timestamp user was last active."
