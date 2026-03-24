@@ -84,9 +84,9 @@ models:
         description: "Current plan each organization has."
       - name: total_revenue
         description: "Total revenue calculated by multiplying the MRR amount by the datediff in months for each subscription."
-      - name: num_users
+      - name: total_users
         description: "Number of users each organization has."
-      - name: num_registered_users
+      - name: total_registered_users
         description: "Number of registered users each organization has."
       - name: total_events
         description: "Number of event each organization has logged."
